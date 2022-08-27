@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ACMEInventario.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Inventario de productos</h1>
+
+
+
+ <td>
+    @Html.ActionLink("Agregar", "Create", null,htmlAttributes: new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Consultar", "Find", null,htmlAttributes: new { @class = "btn btn-info" })
+</td>   
+    
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoBarra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioUnitario)
+            </th>
+            <th>
+                @Html.DisplayName("Sucursal")
+            </th>
+            <th>
+                @Html.DisplayName("Tipo de movimiento")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoBarra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioUnitario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSucursalNavigation.NombreSucursal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoMovimientoNavigation.TipoMovimiento1)
+            </td>
+            
+             <td>
+            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+   
+
+
